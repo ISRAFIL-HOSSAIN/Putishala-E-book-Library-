@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:putishala/components/Home/Home_page.dart';
+import 'pages.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({ Key? key }) : super(key: key);
-
+  
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
 
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
+        AnimationController(vsync: this, duration: const Duration(seconds: 3));
 
     animation1 = Tween<double>(begin: 40, end: 20).animate(CurvedAnimation(
         parent: _controller, curve: Curves.fastLinearToSlowEaseIn))
@@ -37,22 +37,22 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       setState(() {
         _fontSize = 1.06;
       });
     });
 
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       setState(() {
         _containerSize = 2;
         _containerOpacity = 1;
       });
     });
 
-    Timer(Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 4), () {
       setState(() {
-        Navigator.pushReplacement(context, PageTransition(HomePage()));
+        Navigator.pushReplacement(context, PageTransition(const IntroductionPage()));
       });
     });
   }
@@ -75,12 +75,12 @@ class _SplashScreenState extends State<SplashScreen>
           Column(
             children: [
               AnimatedContainer(
-                duration: Duration(milliseconds: 3000),
+                duration: const Duration(milliseconds: 3000),
                 curve: Curves.fastLinearToSlowEaseIn,
                 height: _height / _fontSize
               ),
               AnimatedOpacity(
-                duration: Duration(milliseconds: 2000),
+                duration: const Duration(milliseconds: 2000),
                 opacity: _textOpacity,
                 child: Text(
                   'PUTISHALA',
@@ -95,11 +95,11 @@ class _SplashScreenState extends State<SplashScreen>
           ),
           Center(
             child: AnimatedOpacity(
-              duration: Duration(milliseconds: 4000),
+              duration: const Duration(milliseconds: 4000),
               curve: Curves.fastLinearToSlowEaseIn,
               opacity: _containerOpacity,
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 3000),
+                duration:const Duration(milliseconds: 3000),
                 curve: Curves.fastLinearToSlowEaseIn,
                 height: _width / _containerSize,
                 width: _width / _containerSize,
@@ -127,7 +127,7 @@ class PageTransition extends PageRouteBuilder {
   PageTransition(this.page)
       : super(
           pageBuilder: (context, animation, anotherAnimation) => page,
-          transitionDuration: Duration(milliseconds: 3000),
+          transitionDuration: const Duration(milliseconds: 3000),
           transitionsBuilder: (context, animation, anotherAnimation, child) {
             animation = CurvedAnimation(
               curve: Curves.fastLinearToSlowEaseIn,
